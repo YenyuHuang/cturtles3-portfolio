@@ -12,7 +12,7 @@ on:
 jobs:
   run-linters:
     name: Run linters
-    runs-on: ubtuntu-latest
+    runs-on: ubuntu-latest
   
     steps:
       - name: Check out Git repository
