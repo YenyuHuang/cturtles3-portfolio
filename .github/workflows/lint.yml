@@ -32,4 +32,4 @@ jobs:
           black: true
           flake8: true
           auto_fix: true
-          exclude: "~/cturtles3-portfolio/.github/workflows/*"
+          flake8_dir: app/
