@@ -5,10 +5,12 @@ on:
   # but only for the main branch
   push:
     branches:
-      - *
+      - main
+      - githubActions
   pull_request:
     branches:
-      - *
+      - main
+      - githubActions
 jobs:
   run-linters:
     name: Run linters
