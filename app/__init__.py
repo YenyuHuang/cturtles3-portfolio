@@ -119,9 +119,11 @@ def about(name):
         "about.html", name=name, userData=userData, allUsers=allUsers
     )
 
+
 @app.route("/extra")
 def extra():
     return "this is an extra testing page"
+
 
 if __name__ == "__main__":
     # rid (port="5002") within run function
