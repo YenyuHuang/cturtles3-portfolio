@@ -6,9 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import get_db
 
 app = Flask(__name__)
-data_file = open('static/data.json')
-data = json.load(data_file)
-#data_file.close()
+
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+data_file = os.path.join(PROJECT_ROOT, 'static/data.json')
+data = json.load(open(data_file)) 
 
 #dB
 app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
