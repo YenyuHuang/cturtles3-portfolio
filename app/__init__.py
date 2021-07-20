@@ -9,6 +9,11 @@ app = Flask(__name__)
 
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 data_file = os.path.join(PROJECT_ROOT, 'static/data.json')
+data = json.load(open(data_file))
+#data_file.close()
+
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+data_file = os.path.join(PROJECT_ROOT, 'static/data.json')
 data = json.load(open(data_file)) 
 
 #dB
@@ -35,19 +40,29 @@ def register():
         elif not password:
             error = 'Password is required.'
         elif db.execute(
+                'SELECT id FROM user WHERE username = ?', (username,)
+
 	        'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
             error = "User {username} is already registered."
 
         if error is None:
             db.execute(
+                    'INSERT INTO user (username, password) VALUES (?, ?)',
+
 	            'INSERT INTO user (username, password) VALUES (?, ?)',
+
                 (username, generate_password_hash(password))
             )
             db.commit()
             return f"User {username} created successfully\n"
         else:
             return error, 418
+
+
+    ## TODO: Return a restister page
+    #return "Register Page not yet implemented", 501
+    return render_template("register.html", title="Register")
 
     ## TODO: Return a restister page
     #return "Register Page not yet implemented", 501
@@ -63,7 +78,7 @@ def login():
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
-                
+
         if user is None:
             error = 'Incorrect username.'
         elif not check_password_hash(user['password'], password):
@@ -73,6 +88,10 @@ def login():
             return "Login Successful\n", 200
         else:
             return error, 418
+
+    ## TODO: Return a login page:
+    #return "Login Page not yet implemented", 501
+    return render_template("login.html", title="Login")
 	
     ## TODO: Return a login page:
     #return "Login Page not yet implemented", 501 
@@ -96,4 +115,6 @@ def about(name):
 
 if __name__ == "__main__":
     # rid (port="5002") within run function
+    app.run(debug=True)
+
     app.run(debug=True) 

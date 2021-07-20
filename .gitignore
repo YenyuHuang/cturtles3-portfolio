@@ -3,7 +3,7 @@ __pycache__
 
 venv/
 *.pyc
-
+example.env
 instance/
 
 .pytest_cache/
@@ -17,5 +17,4 @@ build/
 python3-virtualenv
 
 .DS_Store
-
 flask.sqlite
