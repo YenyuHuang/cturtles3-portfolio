@@ -33,3 +33,7 @@ jobs:
 
      - name: Check deploy status
        run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && docker-compose ps'
+
+     - name: Discord success notification
+       run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful. Check it out at https://cturtles.duckdns.org"
+         
