@@ -1,9 +1,9 @@
 version: '3'
 services:
   web:
+    container_name: web_cturtles
     # Path to dockerfile
     build: .
-
     # Mapping of  host to container port
     # Path to dockerfile.
     # '.' represents the current directory in which
@@ -25,6 +25,7 @@ services:
       - db
 
   db:
+    container_name: db_cturtles
     image: postgres
     restart: always
     env_file:
@@ -33,6 +34,7 @@ services:
       - mydatabase:/var/lib/postgresql/data
         
   nginx:
+     container_name: nginx_cturtles
      image: jonasal/nginx-certbot:latest
      restart: unless-stopped
      env_file:
