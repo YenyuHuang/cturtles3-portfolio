@@ -8,7 +8,6 @@ services:
     # Path to dockerfile.
     # '.' represents the current directory in which
     # docker-compose.yml is present.
-    build: .
 
     # Mapping of container port to host
     
@@ -19,4 +18,19 @@ services:
       - .env
     # Mount volume
     volumes:
-      - ./flask.sqlite:/myportfolio/flask.sqlite
+      #      - ./flask.sqlite:/myportfolio/flask.sqlite
+
+      - .:/myportfolio
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mydatabase:/var/lib/postgresql/data
+
+volumes:
+  mydatabase:
