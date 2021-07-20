@@ -5,6 +5,13 @@ services:
     build: .
 
     # Mapping of  host to container port
+    # Path to dockerfile.
+    # '.' represents the current directory in which
+    # docker-compose.yml is present.
+    build: .
+
+    # Mapping of container port to host
+    
     ports:
       - "80:80"
     restart: always

@@ -5,6 +5,7 @@ CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL  
+  password TEXT NOT NULL
 );
 
 CREATE TABLE post (
@@ -16,3 +17,5 @@ CREATE TABLE post (
   FOREIGN KEY (author_id) REFERENCES user (id)  
 );
 
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
